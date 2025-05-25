@@ -17,11 +17,12 @@ echo [INFO ] Starting UDP receiver ...
 # cat /etc/os-release
 
 # set the port number and buffer size for the udp receiver
-export udpSendToIP=127.0.0.1
+# export udpSendToIP=127.0.0.1
+export udpSendToIP=195.240.91.108
 export udpSendToPort=8888
 export udpBuffer=1024
 
 # start the app
-cd ./py-app
+cd ./py_app
 python3 udp_sender.py
 cd ..

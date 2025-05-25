@@ -21,6 +21,6 @@ export udpReceiveFromPort=8888
 export udpBuffer=1024
 
 # start the app
-cd ./py-app
+cd ./py_app
 python3 udp_receiver.py
 cd ..
