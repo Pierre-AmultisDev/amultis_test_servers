@@ -1,0 +1,16 @@
+# python
+.venv/
+__pycache__
+
+# IDE
+.vscode/
+.idea/
+.ipynb_checkpoints/
+
+# DATASETS
+data/
+
+# DATA
+*.xlsx
+*.csv
+
