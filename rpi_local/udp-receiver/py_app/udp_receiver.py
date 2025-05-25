@@ -1,6 +1,7 @@
 #Libraries
 import socket    #https://wiki.python.org/moin/UdpCommunication
-import datetime from datatime
+from datetime import datetime
+import os
 
 ##Parameters
 #localPort=8888
@@ -24,17 +25,17 @@ import datetime from datatime
 # -------------
 def init(receive_from_port):
     receiversocket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)  ## Internet,UDP
-
     # get host ip address
     ip_address = '';
     receiversocket.connect(("8.8.8.8",80))
     ip_address = receiversocket.getsockname()[0]
     receiversocket.close()
- 
+
+    receiversocket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)  ## Internet,UDP
     receiversocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
     receiversocket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1) #enable broadcasting mode
     receiversocket.bind(('', receive_from_port))
-    print("UDP receiver initialized at IP: {} on port :{}".format(ip_address,receive_from_port))
+    print("UDP receiver initialized at IP: {} on port: {}".format(ip_address,receive_from_port))
     return receiversocket
 
     

@@ -1,6 +1,8 @@
 # Libraries
 # -------------
 import socket
+from datetime import datetime
+import os
 import time
 
 # send_to_serverAddressPort   = ("192.168.18.84", 8888)
@@ -22,7 +24,7 @@ def main(UDPClientSocket, to_server="127.0.0.1", to_port=8888, bufferSize=1024):
     while True: 
         msgToSend = "Hello from UDP Sender " + str(counter).zfill(4)
         now = datetime.now() 
-        print("[INFO ]", now.strftime("%Y-%m-%d %H:%M:%S"), "sending message: ->|{}|<-".format(msgToSend.decode()))
+        print("[INFO ]", now.strftime("%Y-%m-%d %H:%M:%S"), "sending message: ->|{}|<-".format(msgToSend))
         bytesToSend = msgToSend.encode()
 
         # Send to server using created UDP socket
@@ -30,7 +32,7 @@ def main(UDPClientSocket, to_server="127.0.0.1", to_port=8888, bufferSize=1024):
 
         # wait for message from the other side    
         msgFromServer = UDPClientSocket.recvfrom(bufferSize)
-        msg = "Message received from Server {}".format(msgFromServer[0])
+        msg = "Message received back from UDP receiver ->|{}|<-".format(msgFromServer[0].decode())
         print(msg)
 
         counter = counter + 1
