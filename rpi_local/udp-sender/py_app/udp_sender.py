@@ -1,13 +1,19 @@
-# Libraries
-# -------------
+# =============================================================================
+#
+# @package    aMultis test servers
+# @container  Raspberry Pi Local
+# @name       udp_sender.py
+# @purpose    start script for python program
+# @version    v0.0.1  2025-05-25
+# @author     pierre@amultis.dev
+# @copyright  (C) 2020-2025 Pierre Veelen
+#
+# =============================================================================
 import socket
 from datetime import datetime
 import os
 import time
 
-# send_to_serverAddressPort   = ("192.168.18.84", 8888)
-#send_to_serverAddressPort   = ("3.121.206.246", 8888)
-#bufferSize          = 1024
  
 # function init 
 # -------------

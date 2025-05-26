@@ -1,41 +1,32 @@
-#Libraries
-import socket    #https://wiki.python.org/moin/UdpCommunication
-from datetime import datetime
+# =============================================================================
+#
+# @package    aMultis test servers
+# @container  Raspberry Pi Local
+# @name       udp_receiver.py
+# @purpose    start script for python program
+# @version    v0.0.1  2025-05-25
+# @author     pierre@amultis.dev
+# @copyright  (C) 2020-2025 Pierre Veelen
+#
+# =============================================================================
+import socket
 import os
-
-##Parameters
-#localPort=8888
-#bufferSize=1024
-
-#Objects
-#sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)  ## Internet,UDP
-
-## function get_ip_address 
-## -------------
-#def get_ip_address():
-#    """get host ip address"""
-#    ip_address = '';
-#    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-#    s.connect(("8.8.8.8",80))
-#    ip_address = s.getsockname()[0]
-#    s.close()
-#    return ip_address
+from datetime import datetime
 
 # function init 
 # -------------
 def init(receive_from_port):
-    receiversocket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)  ## Internet,UDP
     # get host ip address
-    ip_address = '';
-    receiversocket.connect(("8.8.8.8",80))
-    ip_address = receiversocket.getsockname()[0]
-    receiversocket.close()
+    temp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    temp_socket.connect(("8.8.8.8", 80))
+    ip_address = temp_socket.getsockname()[0]
+    temp_socket.close()
 
     receiversocket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)  ## Internet,UDP
     receiversocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
     receiversocket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1) #enable broadcasting mode
     receiversocket.bind(('', receive_from_port))
-    print("UDP receiver initialized at IP: {} on port: {}".format(ip_address,receive_from_port))
+    print("UDP receiver initialized at IP: {} on port: {}".format(ip_address, receive_from_port))
     return receiversocket
 
     
