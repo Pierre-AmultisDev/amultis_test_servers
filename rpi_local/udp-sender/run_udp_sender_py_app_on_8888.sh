@@ -11,14 +11,16 @@
 #
 # =============================================================================
 
-echo [INFO ] Starting UDP receiver ...
+echo [INFO ] Starting UDP sender ...
 
 # Show some info about the host
 # cat /etc/os-release
 
-# set the port number and buffer size for the udp receiver
 # export udpSendToIP=127.0.0.1
-export udpSendToIP=195.240.91.108
+# export udpSendToIP=195.240.91.108
+export udpSendToIP=udp-local.amultis.dev
+
+# set the port number and buffer size for the udp receiver
 export udpSendToPort=8888
 export udpBuffer=1024
 

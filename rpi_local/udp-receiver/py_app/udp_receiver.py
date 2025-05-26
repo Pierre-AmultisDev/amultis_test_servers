@@ -41,13 +41,18 @@ def init(receive_from_port):
     
 # function main 
 # -------------
-def main(UDPReceiverSocket, bufferSize=1024):
+def main(UDPReceiverSocket, bufferSize=1024, to_port=8888):
     while True:
-        data, addr = UDPReceiverSocket.recvfrom(bufferSize) # get data
+        data, from_address = UDPReceiverSocket.recvfrom(bufferSize) # get data
+        print(from_address)
+
         now = datetime.now() 
-        print("[INFO ]", now.strftime("%Y-%m-%d %H:%M:%S"), "received message: ->|{}|<- from IP {}".format(data.decode(),addr))
+        print("[INFO ]", now.strftime("%Y-%m-%d %H:%M:%S"), "received message: ->|{}|<- from IP {}".format(data.decode(), from_address))
         msgToSend = "Message received OK at " + now.strftime("%Y-%m-%d %H:%M:%S")
-        UDPReceiverSocket.sendto(msgToSend.encode(),addr)  # write data
+        bytesToSend = msgToSend.encode()
+
+        UDPReceiverSocket.sendto(bytesToSend, from_address) # write data
+     
     return
 
 
@@ -56,4 +61,4 @@ if __name__ == '__main__':
     UDP_buffer = int(os.getenv("udpBuffer", 1024))
     
     UDP_receiver = init(UDP_receiverport)
-    main(UDP_receiver, UDP_buffer)
+    main(UDP_receiver, UDP_buffer, UDP_receiverport)

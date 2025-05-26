@@ -19,20 +19,28 @@ def init():
 
 # function main
 # -------------
-def main(UDPClientSocket, to_server="127.0.0.1", to_port=8888, bufferSize=1024):
+def main(UDPSenderSocket, to_server="127.0.0.1", to_port=8888, bufferSize=1024):
+
+    # get the IP address of to_server
+    # https://docs.python.org/3/library/socket.html#socket.getaddrinfo
+    to_server_IP = socket.getaddrinfo(to_server, to_port, proto=socket.IPPROTO_UDP)[0][4][0]
+
     counter = 0
     while True: 
         msgToSend = "Hello from UDP Sender " + str(counter).zfill(4)
         now = datetime.now() 
-        print("[INFO ]", now.strftime("%Y-%m-%d %H:%M:%S"), "sending message: ->|{}|<-".format(msgToSend))
+        print("[INFO ]", now.strftime("%Y-%m-%d %H:%M:%S"))
+        print("sending message: ->|{}|<-".format(msgToSend))
+        print("to:", to_server, "on IP:", to_server_IP, "via port:", str(to_port))
+        
         bytesToSend = msgToSend.encode()
-
         # Send to server using created UDP socket
-        UDPClientSocket.sendto(bytesToSend, (to_server,to_port))
+        UDPSenderSocket.sendto(bytesToSend, (to_server_IP,to_port))
 
         # wait for message from the other side    
-        msgFromServer = UDPClientSocket.recvfrom(bufferSize)
-        msg = "Message received back from UDP receiver ->|{}|<-".format(msgFromServer[0].decode())
+        print("Waiting for return message")
+        msgFromServer = UDPSenderSocket.recvfrom(bufferSize)
+        msg = "Message received over UDP ->|{}|<-".format(msgFromServer[0].decode())
         print(msg)
 
         counter = counter + 1
