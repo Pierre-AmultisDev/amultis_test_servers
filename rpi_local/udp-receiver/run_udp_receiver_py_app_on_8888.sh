@@ -4,7 +4,7 @@
 # @package    aMultis test servers
 # @container  Raspberry Pi Local
 # @name       run_udp_receiver_py_app_on_8888.sh
-# @purpose    start script for python program
+# @purpose    script to run python script
 # @version    v0.0.1  2025-05-25
 # @author     pierre@amultis.dev
 # @copyright  (C) 2020-2025 Pierre Veelen
