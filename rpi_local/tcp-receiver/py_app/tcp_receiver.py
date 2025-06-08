@@ -28,7 +28,9 @@ def init(receive_from_port):
 
     server_socket.bind(('', receive_from_port))
     server_socket.listen(5)  # Maximaal 5 clients in wachtrij
-    print(f"TCP receiver initialized at IP: {ip_address} on port: {receive_from_port}")
+
+    now = datetime.now()
+    print("[INFO ]", now.strftime("%Y-%m-%d %H:%M:%S"), f"TCP receiver initialized at IP: {ip_address} on port: {receive_from_port}")
     return server_socket
 
 
@@ -36,28 +38,32 @@ def init(receive_from_port):
 # -------------
 def main(server_socket, bufferSize=1024):
     while True:
-        print("[INFO ] Waiting for a connection...")
+        now = datetime.now()
+        print("[INFO ]", now.strftime("%Y-%m-%d %H:%M:%S"), "Waiting for a connection ...")
+        
         conn, addr = server_socket.accept()
-        print(f"[INFO ] Connection established with {addr}")
+        now = datetime.now()
+        print("[INFO ]", now.strftime("%Y-%m-%d %H:%M:%S"), "Connection established with", f"{addr}")
 
         try:
             data = conn.recv(bufferSize)
             if not data:
-                print("[INFO ] No data received, closing connection.")
+                now = datetime.now()
+                print("[INFO ]", now.strftime("%Y-%m-%d %H:%M:%S"), "No data received, closing connection.")
                 conn.close()
                 continue
 
             now = datetime.now()
             print("[INFO ]", now.strftime("%Y-%m-%d %H:%M:%S"), f"received message: ->|{data.decode()}|<- from IP {addr}")
 
-            msgToSend = "Message received OK at " + now.strftime("%Y-%m-%d %H:%M:%S")
-            conn.sendall(msgToSend.encode())
+            #msgToSend = "Message received OK at " + now.strftime("%Y-%m-%d %H:%M:%S")
+            #conn.sendall(msgToSend.encode())
 
         except Exception as e:
-            print("[ERROR]", e)
+            print("[ERROR]", now.strftime("%Y-%m-%d %H:%M:%S"), e)
         finally:
             conn.close()
-            print("[INFO ] Connection closed.")
+            print("[INFO ]", now.strftime("%Y-%m-%d %H:%M:%S"), "Connection closed.")
 
 if __name__ == '__main__':
     TCP_receiverport = int(os.getenv("tcpReceiveFromPort", 8888))
