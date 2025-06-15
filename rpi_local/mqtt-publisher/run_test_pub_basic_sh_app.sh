@@ -18,5 +18,5 @@ echo [INFO ] Starting MQTT publisher ...
 
 # start the app
 cd ./sh_app
-./test_pub.sh
+./test_pub_basic.sh
 cd ..

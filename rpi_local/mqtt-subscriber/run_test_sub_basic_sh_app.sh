@@ -18,5 +18,5 @@ echo [INFO ] Starting MQTT subscribr ...
 
 # start the app
 cd ./sh_app
-./test_sub.sh
+./test_sub_basic.sh
 cd ..

@@ -1,0 +1,1 @@
+sudo mosquitto_sub -h 192.168.18.83 -p 1883 -t '#'
