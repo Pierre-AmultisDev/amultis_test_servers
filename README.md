@@ -5,6 +5,6 @@ This repository holds basic test servers for various platforms.
   - upd-receiver
   - upd-sender
   - mqtt-broker
-  - mqtt-sender
-  - mqtt-receiver
+  - mqtt-subscriber
+  - mqtt-publisher
   
