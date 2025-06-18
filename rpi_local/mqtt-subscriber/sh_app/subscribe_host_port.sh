@@ -1,1 +1,7 @@
-sudo mosquitto_sub -h 192.168.18.83 -p 1883 -t '#'
+#!/bin/bash
+#
+# subscribe to host 192.168.2.83 (wired)
+# using port 1883
+# for topic # (all topics)
+#
+mosquitto_sub --host 192.168.2.83 --port 1883 --topic "#"

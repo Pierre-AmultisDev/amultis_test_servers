@@ -19,5 +19,5 @@ echo [INFO ] Starting MQTT broker ...
 # start the app
 cd ./sh_app
 sudo cp mosquitto_basic.conf /etc/mosquitto/conf.d/mosquitto_basic.conf
-sudo ./test_broker_basic.sh
+./test_broker_basic.sh
 cd ..

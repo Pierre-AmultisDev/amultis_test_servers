@@ -3,7 +3,7 @@
 #
 # @package    aMultis test servers
 # @container  Raspberry Pi Local
-# @name       run_mqtt_subscriber_sh_app.sh
+# @name       run_subscribe_host_port_sh_app.sh
 # @purpose    script to run shell script
 # @version    v0.0.1  2025-06-08
 # @author     pierre@amultis.dev
@@ -11,7 +11,7 @@
 #
 # =============================================================================
 
-echo [INFO ] Starting MQTT subscribr ...
+echo [INFO ] Starting MQTT subscriber ...
 
 # Show some info about the host
 # cat /etc/os-release

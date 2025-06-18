@@ -3,7 +3,7 @@
 #
 # @package    aMultis test servers
 # @container  Raspberry Pi Local
-# @name       run_test_sub_basic_sh_app.sh
+# @name       view_logfile_last50.sh
 # @purpose    script to run shell script
 # @version    v0.0.1  2025-06-18
 # @author     pierre@amultis.dev
@@ -11,12 +11,10 @@
 #
 # =============================================================================
 
-echo [INFO ] Starting MQTT subscriber ...
+echo [INFO ] Starting logviewe ...
 
 # Show some info about the host
 # cat /etc/os-release
 
-# start the app
-cd ./sh_app
-./test_sub_basic.sh
-cd ..
+sudo tail -n 50 /var/log/mosquitto/mosquitto.log
+

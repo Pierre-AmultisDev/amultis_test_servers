@@ -3,7 +3,7 @@
 #
 # @package    aMultis test servers
 # @container  Raspberry Pi Local
-# @name       run_test_sub_basic_sh_app.sh
+# @name       run_test_port.sh
 # @purpose    script to run shell script
 # @version    v0.0.1  2025-06-18
 # @author     pierre@amultis.dev
@@ -11,12 +11,13 @@
 #
 # =============================================================================
 
-echo [INFO ] Starting MQTT subscriber ...
+echo [INFO ] Starting port tester ...
 
 # Show some info about the host
 # cat /etc/os-release
 
-# start the app
-cd ./sh_app
-./test_sub_basic.sh
-cd ..
+echo [INFO ] Show active listerners on port 1883 ...
+sudo ss -tulnp | grep 1883
+
+echo [INFO ] Show active listerners on port 8123 ...
+sudo ss -tulnp | grep 8123
